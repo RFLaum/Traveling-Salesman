@@ -31,8 +31,7 @@ class Gene
   end
 
   def initialize(city_order)
-    one_index = city_order.index(1)
-    @city_order = city_order.rotate(one_index)
+    @city_order = city_order
     @time = time_calc
   end
 
@@ -72,9 +71,5 @@ class Gene
   def report
     # @city_order.join(', ')
     @city_order.dup
-  end
-
-  def raw_order
-    @city_order
   end
 end
