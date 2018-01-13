@@ -7,10 +7,13 @@ class MainController < ApplicationController
     params[:coords].each do |num, pair|
       city_arr << pair.map(&:to_i)
     end
-    pool = GenePool.new(city_arr.dup, 500)
+    pool = GenePool.new(city_arr.dup, 100, 2)
     50.times do
       pool.one_generation
     end
+    # until pool.num_genes >= 400 && pool.uniform?
+    #   pool.one_generation
+    # end
     render json: { winner: pool.report_best }
   end
 end

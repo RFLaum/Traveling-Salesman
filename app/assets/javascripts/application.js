@@ -40,18 +40,34 @@ function makePath(arr){
   context.stroke();
 }
 
+function findSol(thisButton){
+  var allButtons = $('button');
+  allButtons.prop('disabled', true);
+  thisButton.text('Calculating...');
+  $.ajax({
+    data: {coords: pointHolder},
+    dataType: 'json',
+    url: '/gene.json',
+    success: function(results){
+      // window.alert(results.message);
+      makePath(results.winner);
+      allButtons.prop('disabled', false);
+      thisButton.text('Calculate');
+    }
+  });
+}
+
+function clearData(){
+  pointHolder = [];
+  $('#map')[0].getContext('2d').clearRect(0,0,500,200);
+}
+
 $(document).ready(function(){
   $('#map').on('click', clickResponse);
+  $('#eraser').click(function(){
+    clearData();
+  });
   $('#submit').click(function(){
-    $(this).text('Calculating...');
-    $.ajax({
-      data: {coords: pointHolder},
-      dataType: 'json',
-      url: '/gene.json',
-      success: function(results){
-        // window.alert(results.message);
-        makePath(results.winner);
-      }
-    });
+    findSol($(this));
   });
 });
