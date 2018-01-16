@@ -14,6 +14,7 @@ class GenePool
         x_sqr = (first_city[0] - second_city[0]).abs2
         y_sqr = (first_city[1] - second_city[1]).abs2
         @distances[i][j] = Math.sqrt(x_sqr + y_sqr)
+        # @distances[i][j] = x_sqr + y_sqr
       end
     end
 

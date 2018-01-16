@@ -49,10 +49,9 @@ function findSol(thisButton){
     dataType: 'json',
     url: '/gene.json',
     success: function(results){
-      // window.alert(results.message);
-      makePath(results.winner);
-      allButtons.prop('disabled', false);
-      thisButton.text('Calculate');
+        makePath(results.winner);
+        allButtons.prop('disabled', false);
+        thisButton.text('Calculate');
     }
   });
 }
