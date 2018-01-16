@@ -1,24 +1,7 @@
-# README
+A quick application to solve Traveling Salesman problems with a genetic algorithm. The site itself was created in Ruby on Rails, but most of the interesting stuff is JavaScript and C++.
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+Users can enter whatever city arrangements they want by clicking on a <canvas>; their entries are displayed as dots on the <canvas> by means of JavaScript. Hitting the "calculate" button sends an Ajax query with an array of the city locations. This query is then passed along to a C++ module I wrote (you can see the code in the /cpp folder), which does the actual calculation. The result is displayed as a path on the <canvas>.
 
-Things you may want to cover:
+The method of mutation I use is somewhat unusual. Originally, I just had mutations scramble a section of the path, but I found that the algorithm got trapped in local optima. This is because it would find good solutions for sections of the path, but would have those sections in the wrong order. I therefore added another kind of mutation designed to jostle it out of these local optima.
 
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+Important note: I use Rice to handle the interface between Ruby and C++, so if you want to run this code yourself you will need to have Ruby built with --enable-shared, as that is required for Rice. There is also code to run the genetic algorithm in Ruby, but that is much slower than C++. The code to call the Ruby solver is present in main_controller.rb, but commented out.

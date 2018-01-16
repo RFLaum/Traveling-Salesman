@@ -12,7 +12,6 @@ class MainController < ApplicationController
     require './cpp/cruncher'
     answer = Cruncher.new.solver(city_arr.dup);
     # logger.debug "gene test #{answer}"
-    # logger.debug "seed: #{answer.pop}"
     # pool = GenePool.new(city_arr.dup, 500)
     # 50.times do
     #   pool.one_generation
